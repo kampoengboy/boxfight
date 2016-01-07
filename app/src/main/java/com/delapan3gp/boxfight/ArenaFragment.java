@@ -1,9 +1,11 @@
 package com.delapan3gp.boxfight;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 public class ArenaFragment extends Fragment {
@@ -28,35 +31,55 @@ public class ArenaFragment extends Fragment {
     public static ImageView imgview2;
     public static Button btn_attack_player1;
     public static Button btn_attack_player2;
-
+    public static ProgressBar pgBar;
+    public static ProgressBar pgBar2;
+    public static final String KEY = "reset";
+    public static final String KEY2 = "left_p1";
+    public static final String KEY3 = "right_p1";
+    public static final String KEY4 = "left_p2";
+    public static final String KEY5 = "right_p2";
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
 
+        savedInstanceState.putBoolean(KEY, true);
+        savedInstanceState.putFloat(KEY2, left_p1);
+        savedInstanceState.putFloat(KEY3, right_p1);
+        savedInstanceState.putFloat(KEY4,left_p2);
+        savedInstanceState.putFloat(KEY5,right_p2);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
-
+        left_p1 = 0;
+        right_p1 = 0;
+        left_p2 = 0;
+        right_p2 = 0;
         final RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         final Button btn_left_player1 = (Button)view.findViewById(R.id.btn_left_player1);
         final Button btn_left_player2 = (Button)view.findViewById(R.id.btn_left_player2);
         final Button btn_right_player1 = (Button)view.findViewById(R.id.btn_right_player1);
         final Button btn_right_player2 = (Button)view.findViewById(R.id.btn_right_player2);
-
+        pgBar2 = (ProgressBar)view.findViewById(R.id.progressBar2);
+        pgBar = (ProgressBar)view.findViewById(R.id.progressBar);
+        final Button btn_player1 = (Button)view.findViewById(R.id.btn_player1);
+        final Button btn_player2 = (Button)view.findViewById(R.id.btn_player2);
         imgview = (ImageView)view.findViewById(R.id.imageView);
         imgview.setImageResource(R.drawable.gloves_1);
         imgview2 = (ImageView)view.findViewById(R.id.imageView2);
         imgview2.setImageResource(R.drawable.gloves_2);
-
-        final Button btn_player1 = (Button)view.findViewById(R.id.btn_player1);
-        final Button btn_player2 = (Button)view.findViewById(R.id.btn_player2);
+        hp_player1 = 200;
+        hp_player2 = 200;
+        click_left = 0;
+        click_right = 0;
+        pgBar.setMax(200);
+        pgBar.setProgress(200);
+        pgBar2.setMax(200);
+        pgBar2.setProgress(200);
         btn_attack_player1 = (Button)view.findViewById(R.id.btn_attack_player1);
         btn_attack_player2 = (Button)view.findViewById(R.id.btn_attack_player2);
-
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +96,8 @@ public class ArenaFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
+                                        Intent i = new Intent(getActivity(),HomeActivity.class);
+                                        startActivity(i);
                                     }
                                 });
                         builder1.show();
@@ -82,11 +107,9 @@ public class ArenaFragment extends Fragment {
                         btn_right_player2.setEnabled(false);
                         btn_attack_player1.setEnabled(false);
                         btn_attack_player2.setEnabled(false);
-                        ProgressBar pgBar = (ProgressBar)view.findViewById(R.id.progressBar2);
-                        pgBar.setProgress(0);
+                        pgBar2.setProgress(0);
                     } else {
-                        ProgressBar pgBar = (ProgressBar)view.findViewById(R.id.progressBar2);
-                        pgBar.setProgress(hp_player2);
+                        pgBar2.setProgress(hp_player2);
                     }
                 }
             }
@@ -116,10 +139,8 @@ public class ArenaFragment extends Fragment {
                         btn_right_player2.setEnabled(false);
                         btn_attack_player1.setEnabled(false);
                         btn_attack_player2.setEnabled(false);
-                        ProgressBar pgBar = (ProgressBar)view.findViewById(R.id.progressBar);
                         pgBar.setProgress(0);
                     } else {
-                        ProgressBar pgBar = (ProgressBar)view.findViewById(R.id.progressBar);
                         pgBar.setProgress(hp_player1);
                     }
                 }
