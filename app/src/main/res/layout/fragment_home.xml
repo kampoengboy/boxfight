@@ -23,5 +23,4 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="172dp" />
 
-
 </RelativeLayout>

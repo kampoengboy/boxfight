@@ -1,6 +1,6 @@
 package com.delapan3gp.boxfight;
 
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 
@@ -49,7 +50,8 @@ public class HomeFragment extends Fragment {
             txtStart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent i = new Intent(getActivity(), ArenaActivity.class);
+                    startActivity(i);
                 }
             });
         }
