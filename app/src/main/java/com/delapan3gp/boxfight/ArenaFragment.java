@@ -551,18 +551,21 @@ public class ArenaFragment extends Fragment {
     @Override
     public void onDestroy(){
         super.onDestroy();
+        timer.cancel();
         mPlayer.stop();
     }
 
     @Override
     public void onPause(){
         super.onPause();
+        timer.cancel();
         mPlayer.stop();
     }
 
     @Override
     public void onStop(){
         super.onStop();
+        timer.cancel();
         mPlayer.stop();
     }
 }
