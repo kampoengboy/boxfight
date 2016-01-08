@@ -79,7 +79,7 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 9000;
+        millisinfuture = 90000;
         countDownInterval = 1000;
         isCanceled = false;
 
@@ -233,7 +233,7 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 9000;
+        millisinfuture = 90000;
         countDownInterval = 1000;
 
         timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
