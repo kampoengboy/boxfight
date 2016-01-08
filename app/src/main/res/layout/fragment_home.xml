@@ -17,10 +17,24 @@
         android:id="@+id/txtStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START !"
+        android:text="START"
         android:textSize="30sp"
-        android:layout_alignParentBottom="true"
+        android:textColor="#3a3232"
+        android:fontFamily="sans-serif"
+        android:layout_below="@+id/txtExit"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="172dp" />
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/txtExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXIT"
+        android:textSize="30sp"
+        android:textColor="#3a3232"
+        android:fontFamily="sans-serif"
+        android:layout_below="@+id/imgbtnSound"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp" />
 
 </RelativeLayout>
