@@ -120,7 +120,6 @@ public class ArenaFragment extends Fragment {
                     btn_right_player2.setEnabled(false);
                     btn_attack_player1.setEnabled(false);
                     btn_attack_player2.setEnabled(false);
-                    pgBar2.setProgress(0);
                 }
                 else if(pgBar.getProgress() < pgBar2.getProgress()){
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
@@ -143,7 +142,27 @@ public class ArenaFragment extends Fragment {
                     btn_right_player2.setEnabled(false);
                     btn_attack_player1.setEnabled(false);
                     btn_attack_player2.setEnabled(false);
-                    pgBar.setProgress(0);
+                } else if(pgBar.getProgress() == pgBar2.getProgress()){
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                    builder1.setMessage("DRAW");
+                    builder1.setCancelable(false);
+                    builder1.setPositiveButton(
+                            "CLOSE",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    Intent i = new Intent(getActivity(), HomeActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(i);
+                                }
+                            });
+                    builder1.show();
+                    btn_left_player1.setEnabled(false);
+                    btn_left_player2.setEnabled(false);
+                    btn_right_player1.setEnabled(false);
+                    btn_right_player2.setEnabled(false);
+                    btn_attack_player1.setEnabled(false);
+                    btn_attack_player2.setEnabled(false);
                 }
             }
         }.start();
