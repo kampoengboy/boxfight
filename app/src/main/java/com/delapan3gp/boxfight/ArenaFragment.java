@@ -152,7 +152,7 @@ public class ArenaFragment extends Fragment {
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=16)
+                if(click_left+click_right>=15)
                 {
                     hp_player2-=50;
                     if(hp_player2<=0){
@@ -199,7 +199,7 @@ public class ArenaFragment extends Fragment {
         btn_attack_player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=16)
+                if(click_left+click_right>=15)
                 {
                     hp_player1-=50;
                     if(hp_player1<=0){
