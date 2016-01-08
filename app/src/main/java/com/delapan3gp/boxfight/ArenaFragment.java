@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,6 +28,8 @@ public class ArenaFragment extends Fragment {
     public static int click_right = 0;
     public static int hp_player1 = 200;
     public static int hp_player2 = 200;
+    public static int score_p1 = 0;
+    public static int score_p2 = 0;
     public static ImageView imgview;
     public static ImageView imgview2;
     public static Button btn_attack_player1;
@@ -38,10 +41,15 @@ public class ArenaFragment extends Fragment {
     public static final String KEY3 = "right_p1";
     public static final String KEY4 = "left_p2";
     public static final String KEY5 = "right_p2";
+    public static final String SCORE1_KEY = "";
+    public static final String SCORE2_KEY = "";
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
 
+        savedInstanceState.putInt(SCORE1_KEY, score_p1);
+        savedInstanceState.putInt(SCORE2_KEY, score_p2);
         savedInstanceState.putBoolean(KEY, true);
         savedInstanceState.putFloat(KEY2, left_p1);
         savedInstanceState.putFloat(KEY3, right_p1);
@@ -83,23 +91,46 @@ public class ArenaFragment extends Fragment {
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=16)
-                {
-                    hp_player2-=50;
-                    if(hp_player2<=0){
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                if (click_left + click_right >= 16) {
+                    hp_player2 -= 50;
+                    if (hp_player2 <= 0) {
+                        final AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 1 Win");
                         builder1.setCancelable(true);
 
+                        //Increment score and set text
+                        score_p1 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p1));
+
                         builder1.setPositiveButton(
-                                "CLOSE",
+                                "Again",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                        Intent i = new Intent(getActivity(),HomeActivity.class);
-                                        startActivity(i);
+                                        ArenaFragment.this.pgBar.setProgress(200);
+                                        ArenaFragment.this.pgBar2.setProgress(200);
+                                        ArenaFragment.this.left_p1 = 0;
+                                        ArenaFragment.this.right_p1 = 0;
+                                        ArenaFragment.this.left_p2 = 0;
+                                        ArenaFragment.this.right_p2 = 0;
+
+                                        TranslateAnimation animation1 = new TranslateAnimation(left_p1, right_p1, 0, 0);
+                                        animation1.setDuration(1000);
+                                        animation1.setFillAfter(true);
+                                        btn_player1.startAnimation(animation1);
+                                        imgview.startAnimation(animation1);
+
+                                        TranslateAnimation animation2 = new TranslateAnimation(left_p2, right_p2, 0, 0);
+                                        animation2.setDuration(1000);
+                                        animation2.setFillAfter(true);
+                                        btn_player2.startAnimation(animation2);
+                                        imgview2.startAnimation(animation2);
+
                                     }
-                                });
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                getActivity().finish();
+                            }
+                        });
                         builder1.show();
                         btn_left_player1.setEnabled(false);
                         btn_left_player2.setEnabled(false);
@@ -117,21 +148,46 @@ public class ArenaFragment extends Fragment {
         btn_attack_player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=16)
-                {
-                    hp_player1-=50;
-                    if(hp_player1<=0){
+                if (click_left + click_right >= 16) {
+                    hp_player1 -= 50;
+                    if (hp_player1 <= 0) {
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 2 Win");
                         builder1.setCancelable(true);
 
+                        //Increment score and set text
+                        score_p2 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p2));
+
                         builder1.setPositiveButton(
-                                "CLOSE",
+                                "Again",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
+//                                        getActivity().recreate();
+                                        ArenaFragment.this.pgBar.setProgress(200);
+                                        ArenaFragment.this.pgBar2.setProgress(200);
+                                        ArenaFragment.this.left_p1 = 0;
+                                        ArenaFragment.this.right_p1 = 0;
+                                        ArenaFragment.this.left_p2 = 0;
+                                        ArenaFragment.this.right_p2 = 0;
+
+                                        TranslateAnimation animation1 = new TranslateAnimation(left_p1, right_p1,0,0);
+                                        animation1.setDuration(1000);
+                                        animation1.setFillAfter(true);
+                                        btn_player1.startAnimation(animation1);
+                                        imgview.startAnimation(animation1);
+
+                                        TranslateAnimation animation2 = new TranslateAnimation(left_p2,right_p2,0,0);
+                                        animation2.setDuration(1000);
+                                        animation2.setFillAfter(true);
+                                        btn_player2.startAnimation(animation2);
+                                        imgview2.startAnimation(animation2);
                                     }
-                                });
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                getActivity().finish();
+                            }
+                        });
                         builder1.show();
                         btn_left_player1.setEnabled(false);
                         btn_left_player2.setEnabled(false);
@@ -150,18 +206,18 @@ public class ArenaFragment extends Fragment {
         btn_left_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(right_p1<=-50){
-                    right_p1=-50;
-                    left_p1=-50;
+                if (right_p1 <= -50) {
+                    right_p1 = -50;
+                    left_p1 = -50;
                 } else {
                     left_p1 -= 50;
                     right_p1 -= 50;
                 }
-                if(click_left<=-1)
+                if (click_left <= -1)
                     click_left = -1;
                 else
                     click_left -= 1;
-                TranslateAnimation animation = new TranslateAnimation(left_p1, right_p1,0,0);
+                TranslateAnimation animation = new TranslateAnimation(left_p1, right_p1, 0, 0);
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
                 btn_player1.startAnimation(animation);
@@ -228,4 +284,6 @@ public class ArenaFragment extends Fragment {
         });
         return view;
     }
+
+
 }
