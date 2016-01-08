@@ -3,12 +3,13 @@ package com.delapan3gp.boxfight;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class HomeFragment extends Fragment {
 
@@ -23,7 +24,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         return view;
     }
 
@@ -36,6 +36,7 @@ public class HomeFragment extends Fragment {
     public void AddListener(){
         ImageButton imgbtnSound = (ImageButton)getView().findViewById(R.id.imgbtnSound);
         TextView txtStart = (TextView)getView().findViewById(R.id.txtStart);
+        TextView txtExit = (TextView)getView().findViewById(R.id.txtExit);
 
         if(!imgbtnSound.hasOnClickListeners()) {
             imgbtnSound.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +57,15 @@ public class HomeFragment extends Fragment {
             });
         }
 
-
+        if(!txtExit.hasOnClickListeners()) {
+            txtExit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    DialogExitFragment dialog = new DialogExitFragment();
+                    dialog.show(fm, null);
+                }
+            });
+        }
     }
 }
