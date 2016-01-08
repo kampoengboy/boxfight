@@ -50,6 +50,7 @@ public class ArenaFragment extends Fragment {
     public static final String KEY3 = "right_p1";
     public static final String KEY4 = "left_p2";
     public static final String KEY5 = "right_p2";
+    public AudioPlayer mPlayer = new AudioPlayer();
 
     public static final String SCORE1_KEY = "score1_key";
     public static final String SCORE2_KEY = "score2_key";
@@ -68,6 +69,9 @@ public class ArenaFragment extends Fragment {
 
     }
     public void again(){
+        mPlayer.selectStart(getActivity());
+        mPlayer.play();
+
         ArenaFragment.this.pgBar.setProgress(200);
         ArenaFragment.this.pgBar2.setProgress(200);
         ArenaFragment.this.left_p1 = 0;
@@ -98,6 +102,9 @@ public class ArenaFragment extends Fragment {
             }
 
             public void onFinish() {
+                mPlayer.selectEnd(getActivity());
+                mPlayer.play();
+
                 text.setText("0");
                 if(pgBar.getProgress() > pgBar2.getProgress()){
                     score_p1+=1;
@@ -204,6 +211,10 @@ public class ArenaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
+
+        mPlayer.selectStart(getActivity());
+        mPlayer.play();
+
         left_p1 = 0;
         right_p1 = 0;
         left_p2 = 0;
@@ -251,6 +262,9 @@ public class ArenaFragment extends Fragment {
             }
 
             public void onFinish() {
+                mPlayer.selectEnd(getActivity());
+                mPlayer.play();
+
                 text.setText("0");
                 if(pgBar.getProgress() > pgBar2.getProgress()){
                     score_p1+=1;
@@ -531,6 +545,25 @@ public class ArenaFragment extends Fragment {
                 imgview2.startAnimation(animation);
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        mPlayer.stop();
     }
 }

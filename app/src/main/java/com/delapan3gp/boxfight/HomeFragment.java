@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class HomeFragment extends Fragment {
 
+    private AudioPlayer mPlayer = new AudioPlayer();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mPlayer.selectBgSound(getActivity());
+        mPlayer.play();
 
         return view;
     }
@@ -67,5 +72,23 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        mPlayer.stop();
     }
 }

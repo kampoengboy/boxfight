@@ -18,22 +18,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="START"
-        android:textSize="35sp"
-        android:layout_below="@+id/imgbtnSound"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:textSize="30sp"
         android:textColor="#3a3232"
-        android:fontFamily="sans-serif"/>
+        android:fontFamily="sans-serif"
+        android:layout_below="@+id/txtExit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
 
     <TextView
         android:id="@+id/txtExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EXIT"
-        android:textSize="35sp"
-        android:layout_below="@+id/txtStart"
-        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
         android:textColor="#3a3232"
-        android:fontFamily="sans-serif"/>
+        android:fontFamily="sans-serif"
+        android:layout_below="@+id/imgbtnSound"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp" />
 
 </RelativeLayout>
