@@ -101,7 +101,6 @@ public class ArenaFragment extends Fragment {
                 if(pgBar.getProgress() > pgBar2.getProgress()){
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                     builder1.setMessage("Player 1 Win");
-                    builder1.setCancelable(true);
                     builder1.setPositiveButton(
                             "CLOSE",
                             new DialogInterface.OnClickListener() {
@@ -112,6 +111,7 @@ public class ArenaFragment extends Fragment {
                                     startActivity(i);
                                 }
                             });
+                    builder1.setCancelable(false);
                     builder1.show();
                     btn_left_player1.setEnabled(false);
                     btn_left_player2.setEnabled(false);
@@ -124,7 +124,7 @@ public class ArenaFragment extends Fragment {
                 else if(pgBar.getProgress() < pgBar2.getProgress()){
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                     builder1.setMessage("Player 2 Win");
-                    builder1.setCancelable(true);
+                    builder1.setCancelable(false);
                     builder1.setPositiveButton(
                             "CLOSE",
                             new DialogInterface.OnClickListener() {
@@ -157,9 +157,9 @@ public class ArenaFragment extends Fragment {
                     if(hp_player2<=0){
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 1 Win");
-                        builder1.setCancelable(true);
+                        builder1.setCancelable(false);
                         AlertDialog alert = builder1.create();
-                        alert.setCanceledOnTouchOutside(true);
+                        alert.setCanceledOnTouchOutside(false);
                         new CountDownTimer(500, countDownInterval){
                             @Override
                             public void onTick(long l) {
@@ -204,9 +204,9 @@ public class ArenaFragment extends Fragment {
                     if(hp_player1<=0){
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 2 Win");
-                        builder1.setCancelable(true);
+                        builder1.setCancelable(false);
                         AlertDialog alert = builder1.create();
-                        alert.setCanceledOnTouchOutside(true);
+                        alert.setCanceledOnTouchOutside(false);
                         new CountDownTimer(500, countDownInterval){
                             @Override
                             public void onTick(long l) {
