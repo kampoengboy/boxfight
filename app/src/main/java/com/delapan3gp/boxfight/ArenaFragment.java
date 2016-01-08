@@ -77,6 +77,7 @@ public class ArenaFragment extends Fragment {
         click_right = 0;
         pgBar.setMax(200);
         pgBar.setProgress(200);
+        pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
         final long millisinfuture = 90000;
