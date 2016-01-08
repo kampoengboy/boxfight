@@ -95,7 +95,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
-
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
@@ -106,8 +105,15 @@
         android:indeterminate="false"
         android:layout_alignParentTop="true"
         android:background="#ffffff" />
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text="90"
+        android:id="@+id/timer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff001b" />
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
@@ -118,7 +124,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="#ffffff" />
-
 
     <ImageView
         android:layout_width="wrap_content"
