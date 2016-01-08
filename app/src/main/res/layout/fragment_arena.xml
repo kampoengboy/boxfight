@@ -34,29 +34,27 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAYER 1"
         android:id="@+id/btn_player1"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="69dp"
         android:layout_marginStart="69dp"
-        android:background="#e51717"
         android:textColor="#ffffff"
         android:fontFamily="sans-serif"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:background="@drawable/minion_red"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAYER 2"
         android:id="@+id/btn_player2"
         android:layout_alignTop="@+id/btn_player1"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="77dp"
         android:layout_marginEnd="77dp"
-        android:background="#1a35e4"
+        android:background="@drawable/minion_blue"
         android:textColor="@android:color/white"
         android:textAllCaps="false"/>
 
@@ -149,7 +147,7 @@
         android:layout_alignParentEnd="true"
         android:background="#ffffff" />
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
@@ -163,7 +161,7 @@
         android:id="@+id/imageView2"
         android:layout_alignBottom="@+id/btn_player2"
         android:layout_toLeftOf="@+id/btn_player2"
-        android:layout_toStartOf="@+id/btn_player2" />
+        android:layout_toStartOf="@+id/btn_player2" />-->
 
     <Button
         android:layout_width="wrap_content"
