@@ -43,13 +43,14 @@ public class ArenaFragment extends Fragment {
     public static ProgressBar pgBar;
     public static ProgressBar pgBar2;
     public static CountDownTimer timer;
-    public static long millisinfuture = 90000;
+    public static long millisinfuture = 20000;
     public static long countDownInterval = 1000;
     public static final String KEY = "reset";
     public static final String KEY2 = "left_p1";
     public static final String KEY3 = "right_p1";
     public static final String KEY4 = "left_p2";
     public static final String KEY5 = "right_p2";
+    public AudioPlayer mPlayer = new AudioPlayer();
 
     public static final String SCORE1_KEY = "score1_key";
     public static final String SCORE2_KEY = "score2_key";
@@ -68,6 +69,8 @@ public class ArenaFragment extends Fragment {
 
     }
     public void again(){
+        mPlayer.selectStart(getActivity());
+        mPlayer.play();
         ArenaFragment.this.pgBar.setProgress(200);
         ArenaFragment.this.pgBar2.setProgress(200);
         ArenaFragment.this.left_p1 = 0;
@@ -79,7 +82,7 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 90000;
+        millisinfuture = 20000;
         countDownInterval = 1000;
         isCanceled = false;
 
@@ -98,6 +101,9 @@ public class ArenaFragment extends Fragment {
             }
 
             public void onFinish() {
+                mPlayer.selectEnd(getActivity());
+                mPlayer.play();
+
                 text.setText("0");
                 if(pgBar.getProgress() > pgBar2.getProgress()){
                     score_p1+=1;
@@ -192,18 +198,22 @@ public class ArenaFragment extends Fragment {
         animation1.setDuration(1000);
         animation1.setFillAfter(true);
         btn_player1.startAnimation(animation1);
-        imgview.startAnimation(animation1);
+        //imgview.startAnimation(animation1);
         TranslateAnimation animation2 = new TranslateAnimation(left_p2, right_p2, 0, 0);
         animation2.setDuration(1000);
         animation2.setFillAfter(true);
         btn_player2.startAnimation(animation2);
-        imgview2.startAnimation(animation2);
+        //imgview2.startAnimation(animation2);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
+
+        mPlayer.selectStart(getActivity());
+        mPlayer.play();
+
         left_p1 = 0;
         right_p1 = 0;
         left_p2 = 0;
@@ -218,10 +228,10 @@ public class ArenaFragment extends Fragment {
         pgBar = (ProgressBar)view.findViewById(R.id.progressBar);
         btn_player1 = (Button)view.findViewById(R.id.btn_player1);
         btn_player2 = (Button)view.findViewById(R.id.btn_player2);
-        imgview = (ImageView)view.findViewById(R.id.imageView);
-        imgview.setImageResource(R.drawable.gloves_1);
-        imgview2 = (ImageView)view.findViewById(R.id.imageView2);
-        imgview2.setImageResource(R.drawable.gloves_2);
+        //\imgview = (ImageView)view.findViewById(R.id.imageView);
+        //imgview.setImageResource(R.drawable.gloves_1);
+        //imgview2 = (ImageView)view.findViewById(R.id.imageView2);
+        //imgview2.setImageResource(R.drawable.gloves_2);
         hp_player1 = 200;
         hp_player2 = 200;
         click_left = 0;
@@ -233,7 +243,7 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 90000;
+        millisinfuture = 20000;
         countDownInterval = 1000;
 
         timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
@@ -251,6 +261,9 @@ public class ArenaFragment extends Fragment {
             }
 
             public void onFinish() {
+                mPlayer.selectEnd(getActivity());
+                mPlayer.play();
+
                 text.setText("0");
                 if(pgBar.getProgress() > pgBar2.getProgress()){
                     score_p1+=1;
@@ -340,7 +353,7 @@ public class ArenaFragment extends Fragment {
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=15)
+                if(click_left+click_right>=9)
                 {
                     hp_player2-=50;
                     if(hp_player2<=0){
@@ -397,7 +410,7 @@ public class ArenaFragment extends Fragment {
         btn_attack_player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=15)
+                if(click_left+click_right>=9)
                 {
                     hp_player1-=50;
                     if(hp_player1<=0){
@@ -470,13 +483,13 @@ public class ArenaFragment extends Fragment {
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
                 btn_player1.startAnimation(animation);
-                imgview.startAnimation(animation);
+                //imgview.startAnimation(animation);
             }
         });
         btn_right_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (click_left+click_right>=16){
+                if (click_left+click_right>=9){
 
 
                 } else {
@@ -488,13 +501,13 @@ public class ArenaFragment extends Fragment {
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
                 btn_player1.startAnimation(animation);
-                imgview.startAnimation(animation);
+                //imgview.startAnimation(animation);
             }
         });
         btn_left_player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(click_left+click_right>=16){
+                if(click_left+click_right>=9){
 
 
                 } else {
@@ -506,7 +519,7 @@ public class ArenaFragment extends Fragment {
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
                 btn_player2.startAnimation(animation);
-                imgview2.startAnimation(animation);
+                //imgview2.startAnimation(animation);
 
             }
         });
@@ -528,9 +541,31 @@ public class ArenaFragment extends Fragment {
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
                 btn_player2.startAnimation(animation);
-                imgview2.startAnimation(animation);
+                //imgview2.startAnimation(animation);
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        timer.cancel();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        timer.cancel();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        timer.cancel();
+        mPlayer.stop();
     }
 }
