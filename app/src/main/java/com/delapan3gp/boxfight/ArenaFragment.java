@@ -43,7 +43,7 @@ public class ArenaFragment extends Fragment {
     public static ProgressBar pgBar;
     public static ProgressBar pgBar2;
     public static CountDownTimer timer;
-    public static long millisinfuture = 20000;
+    public static long millisinfuture = 100000;
     public static long countDownInterval = 1000;
     public static final String KEY = "reset";
     public static final String KEY2 = "left_p1";
@@ -82,7 +82,7 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 20000;
+        millisinfuture = 100000;
         countDownInterval = 1000;
         isCanceled = false;
 
@@ -228,10 +228,6 @@ public class ArenaFragment extends Fragment {
         pgBar = (ProgressBar)view.findViewById(R.id.progressBar);
         btn_player1 = (Button)view.findViewById(R.id.btn_player1);
         btn_player2 = (Button)view.findViewById(R.id.btn_player2);
-        //\imgview = (ImageView)view.findViewById(R.id.imageView);
-        //imgview.setImageResource(R.drawable.gloves_1);
-        //imgview2 = (ImageView)view.findViewById(R.id.imageView2);
-        //imgview2.setImageResource(R.drawable.gloves_2);
         hp_player1 = 200;
         hp_player2 = 200;
         click_left = 0;
@@ -243,7 +239,7 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 20000;
+        millisinfuture = 100000;
         countDownInterval = 1000;
 
         timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
@@ -490,8 +486,6 @@ public class ArenaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (click_left+click_right>=9){
-
-
                 } else {
                     right_p1 += 50;
                     left_p1 += 50;
@@ -508,8 +502,6 @@ public class ArenaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(click_left+click_right>=9){
-
-
                 } else {
                     right_p2 -= 50;
                     left_p2 -= 50;

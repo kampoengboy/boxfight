@@ -39,18 +39,8 @@ public class HomeFragment extends Fragment {
     }
 
     public void AddListener(){
-        ImageButton imgbtnSound = (ImageButton)getView().findViewById(R.id.imgbtnSound);
         TextView txtStart = (TextView)getView().findViewById(R.id.txtStart);
         TextView txtExit = (TextView)getView().findViewById(R.id.txtExit);
-
-        if(!imgbtnSound.hasOnClickListeners()) {
-            imgbtnSound.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-        }
 
         if(!txtStart.hasOnClickListeners()) {
             txtStart.setOnClickListener(new View.OnClickListener() {

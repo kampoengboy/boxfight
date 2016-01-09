@@ -4,37 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/idiot_box"
+    android:background="@drawable/bg_minion"
     tools:context="com.delapan3gp.boxfight.HomeFragment">
-
-    <ImageButton
-        android:id="@+id/imgbtnSound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/sound_on_icon"/>
 
     <TextView
         android:id="@+id/txtStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="START"
-        android:textSize="30sp"
+        android:layout_width="162dp"
+        android:layout_height="50dp"
         android:textColor="#3a3232"
         android:fontFamily="sans-serif"
-        android:layout_below="@+id/txtExit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"/>
+        android:background="@drawable/start"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="320dp"/>
 
     <TextView
         android:id="@+id/txtExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EXIT"
-        android:textSize="30sp"
+        android:layout_width="162dp"
+        android:layout_height="50dp"
         android:textColor="#3a3232"
         android:fontFamily="sans-serif"
-        android:layout_below="@+id/imgbtnSound"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:background="@drawable/exit"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="100dp"
+        />
 
 </RelativeLayout>
