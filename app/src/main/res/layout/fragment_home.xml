@@ -14,12 +14,8 @@
         android:textColor="#3a3232"
         android:fontFamily="sans-serif"
         android:background="@drawable/start"
-        android:layout_marginBottom="44dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="190dp"
-        android:layout_marginStart="190dp" />
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="320dp"/>
 
     <TextView
         android:id="@+id/txtExit"
@@ -28,10 +24,9 @@
         android:textColor="#3a3232"
         android:fontFamily="sans-serif"
         android:background="@drawable/exit"
-        android:layout_alignTop="@+id/txtStart"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp" />
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="100dp"
+        />
 
 </RelativeLayout>

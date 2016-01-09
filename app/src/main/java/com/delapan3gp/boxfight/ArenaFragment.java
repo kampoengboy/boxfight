@@ -43,7 +43,7 @@ public class ArenaFragment extends Fragment {
     public static ProgressBar pgBar;
     public static ProgressBar pgBar2;
     public static CountDownTimer timer;
-    public static long millisinfuture = 20000;
+    public static long millisinfuture = 100000;
     public static long countDownInterval = 1000;
     public static final String KEY = "reset";
     public static final String KEY2 = "left_p1";
@@ -82,7 +82,7 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 20000;
+        millisinfuture = 100000;
         countDownInterval = 1000;
         isCanceled = false;
 
@@ -243,7 +243,7 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 20000;
+        millisinfuture = 100000;
         countDownInterval = 1000;
 
         timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
