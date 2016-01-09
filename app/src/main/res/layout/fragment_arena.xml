@@ -32,10 +32,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#ffffff"
-        android:fontFamily="sans-serif"
-        android:textAllCaps="false"
-        android:background="@drawable/minion_red"/>
+        android:background="@drawable/minion_red"
+        android:layout_marginLeft="50dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,11 +41,8 @@
         android:layout_alignTop="@+id/btn_player1"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="77dp"
-        android:layout_marginEnd="77dp"
         android:background="@drawable/minion_blue"
-        android:textColor="@android:color/white"
-        android:textAllCaps="false"/>
+        android:layout_marginRight="50dp"/>
     <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -96,7 +91,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ff001b" />
-
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
