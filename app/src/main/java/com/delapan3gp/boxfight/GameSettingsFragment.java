@@ -3,6 +3,7 @@ package com.delapan3gp.boxfight;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -20,7 +21,6 @@ public class GameSettingsFragment extends Fragment {
     public GameSettingsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +40,7 @@ public class GameSettingsFragment extends Fragment {
 
             @Override
             public int getCount() {
-                return mArenas.size() - 1;
+                return mArenas.size();
             }
         });
 

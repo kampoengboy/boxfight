@@ -11,22 +11,26 @@
         android:id="@+id/txtStart"
         android:layout_width="162dp"
         android:layout_height="50dp"
-        android:textColor="#3a3232"
-        android:fontFamily="sans-serif"
         android:background="@drawable/start"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="320dp"/>
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="255dp"/>
+
+    <TextView
+        android:id="@+id/txtSettings"
+        android:layout_width="162dp"
+        android:layout_height="50dp"
+        android:background="@drawable/settings"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="435dp" />
 
     <TextView
         android:id="@+id/txtExit"
         android:layout_width="162dp"
         android:layout_height="50dp"
-        android:textColor="#3a3232"
-        android:fontFamily="sans-serif"
         android:background="@drawable/exit"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="350dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginRight="35dp"
         />
 
 </RelativeLayout>

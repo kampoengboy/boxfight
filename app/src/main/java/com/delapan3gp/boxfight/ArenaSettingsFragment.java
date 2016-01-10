@@ -40,9 +40,9 @@ public class ArenaSettingsFragment extends Fragment {
         return v;
     }
 
-    public static ArenaSettingsFragment setNewInstanceId(UUID idPecahan){
+    public static ArenaSettingsFragment setNewInstanceId(UUID idArena){
         Bundle args = new Bundle();
-        args.putSerializable(EXTRA_ARENA_ID, idPecahan);
+        args.putSerializable(EXTRA_ARENA_ID, idArena);
 
         ArenaSettingsFragment fragment = new ArenaSettingsFragment();
         fragment.setArguments(args);

@@ -38,5 +38,8 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
             DialogExitFragment dialog = new DialogExitFragment();
             dialog.show(fm, null);
         }
+        else{
+            super.onBackPressed();
+        }
     }
 }

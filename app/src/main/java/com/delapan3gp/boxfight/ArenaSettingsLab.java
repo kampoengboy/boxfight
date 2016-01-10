@@ -24,10 +24,11 @@ public class ArenaSettingsLab {
     private ArenaSettingsLab(Context c){
         mAppContext = c;
         mArenas = new ArrayList<>();
-        setArenaLab(R.drawable.bathroom_arena);
+        setArenaLab(R.drawable.beach_arena);
         setArenaLab(R.drawable.hangingcloth_arena);
         setArenaLab(R.drawable.lampminion_arena);
         setArenaLab(R.drawable.winter_arena);
+        setArenaLab(R.drawable.bathroom_arena);
     }
 
     public static ArenaSettingsLab get(Context c){
