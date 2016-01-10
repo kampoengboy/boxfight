@@ -1,21 +1,24 @@
-<RelativeLayout
+<LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/winter_arena">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Game Settings"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        android:layout_margin="10dp"/>
+    android:gravity="center"
+    android:weightSum="1"
+    android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
+        android:layout_marginTop="140dp"
         android:id="@+id/arenaViewPager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_alignBottom="@+id/gamesettings"
         android:layout_weight="1" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/OKBtn"
+        android:layout_width="162dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ok"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

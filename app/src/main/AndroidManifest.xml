@@ -22,7 +22,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".GameSettingsActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" >
+        </activity>
         <activity
             android:name=".ArenaSettingsActivity"
             android:label="@string/title_activity_arena_settings"
