@@ -9,6 +9,7 @@ import java.util.UUID;
 public class ArenaSettings implements Serializable{
     private UUID idArena;
     private Integer imagePath;
+    private Integer positon;
 
     public ArenaSettings(){
         idArena = UUID.randomUUID();
@@ -24,5 +25,13 @@ public class ArenaSettings implements Serializable{
 
     public Integer getImagePath(){
         return imagePath;
+    }
+
+    public void setPositionActive(int pos){
+        positon = pos;
+    }
+
+    public Integer getPositonActive(){
+        return positon;
     }
 }

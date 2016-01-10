@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ public class ArenaSettingsFragment extends Fragment {
 
     public static final String EXTRA_ARENA_ID = "extra_arena_id";
     private ImageButton arenaSettingsImageBtn;
+    private RadioButton firstRadioBtn, secondRadioBtn, thirdRadioBtn, fourthtRadioBtn, fifthRadioBtn;
 
     public ArenaSettingsFragment() {
         // Required empty public constructor
@@ -35,6 +37,34 @@ public class ArenaSettingsFragment extends Fragment {
         ArenaSettings arenaSettings = ArenaSettingsLab.get(getActivity()).getArena(idArena);
 
         arenaSettingsImageBtn = (ImageButton)v.findViewById(R.id.arenaSettingsImageBtn);
+        firstRadioBtn = (RadioButton)v.findViewById(R.id.firstRadioBtn);
+        secondRadioBtn = (RadioButton)v.findViewById(R.id.secondRadioBtn);
+        thirdRadioBtn = (RadioButton)v.findViewById(R.id.thirdRadioBtn);
+        fourthtRadioBtn = (RadioButton)v.findViewById(R.id.fourthRadioBtn);
+        fifthRadioBtn = (RadioButton)v.findViewById(R.id.fifthRadioBtn);
+
+        firstRadioBtn.setEnabled(false);
+        secondRadioBtn.setEnabled(false);
+        thirdRadioBtn.setEnabled(false);
+        fourthtRadioBtn.setEnabled(false);
+        fifthRadioBtn.setEnabled(false);
+
+        if (arenaSettings.getPositonActive().equals(0)){
+            firstRadioBtn.setChecked(true);
+        }
+        else if(arenaSettings.getPositonActive().equals(1)){
+            secondRadioBtn.setChecked(true);
+        }
+        else if (arenaSettings.getPositonActive().equals(2)){
+            thirdRadioBtn.setChecked(true);
+        }
+        else if(arenaSettings.getPositonActive().equals(3)){
+            fourthtRadioBtn.setChecked(true);
+        }
+        else{
+            fifthRadioBtn.setChecked(true);
+        }
+
         arenaSettingsImageBtn.setBackgroundResource(arenaSettings.getImagePath());
 
         return v;

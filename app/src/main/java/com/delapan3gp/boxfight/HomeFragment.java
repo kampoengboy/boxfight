@@ -1,5 +1,6 @@
 package com.delapan3gp.boxfight;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class HomeFragment extends Fragment {
@@ -70,7 +72,6 @@ public class HomeFragment extends Fragment {
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity(), GameSettingsActivity.class);
                     startActivity(i);
-                    //start activity for result
                 }
             });
         }

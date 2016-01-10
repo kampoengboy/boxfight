@@ -14,6 +14,7 @@ public class ArenaSettingsLab {
     private Context mAppContext;
     private ArrayList<ArenaSettings> mArenas;
     private ArenaSettings arena;
+    private Integer currentPos;
 
     private void setArenaLab(Integer ip){
         arena = new ArenaSettings();
@@ -25,10 +26,10 @@ public class ArenaSettingsLab {
         mAppContext = c;
         mArenas = new ArrayList<>();
         setArenaLab(R.drawable.beach_arena);
-        setArenaLab(R.drawable.hangingcloth_arena);
         setArenaLab(R.drawable.lampminion_arena);
         setArenaLab(R.drawable.winter_arena);
         setArenaLab(R.drawable.bathroom_arena);
+        setArenaLab(R.drawable.banana_arena);
     }
 
     public static ArenaSettingsLab get(Context c){
@@ -49,6 +50,14 @@ public class ArenaSettingsLab {
             }
         }
         return null;
+    }
+
+    public void setCurrentArena(Integer pos){
+        currentPos = pos;
+    }
+
+    public Integer getCurrentArena(){
+        return currentPos;
     }
 
 }

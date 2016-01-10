@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ArenaFragment extends Fragment {
@@ -43,7 +44,7 @@ public class ArenaFragment extends Fragment {
     public static ProgressBar pgBar;
     public static ProgressBar pgBar2;
     public static CountDownTimer timer;
-    public static long millisinfuture = 100000;
+    public static long millisinfuture = 20000;
     public static long countDownInterval = 1000;
     public static final String KEY = "reset";
     public static final String KEY2 = "left_p1";
@@ -54,6 +55,8 @@ public class ArenaFragment extends Fragment {
 
     public static final String SCORE1_KEY = "score1_key";
     public static final String SCORE2_KEY = "score2_key";
+    private Integer currentPos;
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
@@ -82,7 +85,7 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 100000;
+        millisinfuture = 20000;
         countDownInterval = 1000;
         isCanceled = false;
 
@@ -211,6 +214,26 @@ public class ArenaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
 
+
+        if (ArenaSettingsLab.get(getActivity()).getCurrentArena() != null) {
+            currentPos = ArenaSettingsLab.get(getActivity()).getCurrentArena();
+            if (currentPos.equals(0)){
+                view.setBackgroundResource(R.drawable.beach_arena);
+            }
+            else if (currentPos.equals(1)){
+                view.setBackgroundResource(R.drawable.lampminion_arena);
+            }
+            else if (currentPos.equals(2)){
+                view.setBackgroundResource(R.drawable.winter_arena);
+            }
+            else if (currentPos.equals(3)){
+                view.setBackgroundResource(R.drawable.bathroom_arena);
+            }
+            else{
+                view.setBackgroundResource(R.drawable.banana_arena);
+            }
+        }
+
         mPlayer.selectStart(getActivity());
         mPlayer.play();
 
@@ -239,7 +262,7 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 100000;
+        millisinfuture = 20000;
         countDownInterval = 1000;
 
         timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
