@@ -375,6 +375,9 @@ public class ArenaFragment extends Fragment {
                 if(click_left+click_right>=9)
                 {
                     hp_player2-=50;
+                    mPlayer.selectPunch(getActivity());
+                    mPlayer.play();
+
                     if(hp_player2<=0){
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 1 Win");
@@ -432,6 +435,9 @@ public class ArenaFragment extends Fragment {
                 if(click_left+click_right>=9)
                 {
                     hp_player1-=50;
+                    mPlayer.selectPunch(getActivity());
+                    mPlayer.play();
+
                     if(hp_player1<=0){
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                         builder1.setMessage("Player 2 Win");

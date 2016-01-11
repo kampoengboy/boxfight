@@ -43,6 +43,12 @@ public class AudioPlayer {
         stopSoundWhenFinished();
     }
 
+    public void selectPunch(Context c){
+        stop();
+        mPlayer = MediaPlayer.create(c, R.raw.punch);
+        stopSoundWhenFinished();
+    }
+
     public void play() {
         mPlayer.start();
     }

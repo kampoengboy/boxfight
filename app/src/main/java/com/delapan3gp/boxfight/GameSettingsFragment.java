@@ -97,4 +97,11 @@ public class GameSettingsFragment extends Fragment {
         mPlayer.stop();
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mPlayer.selectBgMusic(getActivity());
+        mPlayer.play();
+    }
+
 }
