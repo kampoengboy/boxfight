@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class ArenaFragment extends Fragment {
@@ -30,8 +28,6 @@ public class ArenaFragment extends Fragment {
     public static int hp_player2 = 200;
     public static int score_p1 = 0;
     public static int score_p2 = 0;
-    public static ImageView imgview;
-    public static ImageView imgview2;
     public static Button btn_attack_player1;
     public static Button btn_attack_player2;
     public static Button btn_player1;
@@ -68,9 +64,31 @@ public class ArenaFragment extends Fragment {
         savedInstanceState.putFloat(KEY4,left_p2);
         savedInstanceState.putFloat(KEY5,right_p2);
     }
-    public void setTimer (){
 
+    public void punchPlayer2(){
+        Float move_pos1 = right_p1 + 50;
+        Float static_pos1 = left_p1;
+        TranslateAnimation punchAnimation = new TranslateAnimation(static_pos1, move_pos1, 0, 0);
+        punchAnimation.setDuration(250);
+        //left to right and right to left
+        punchAnimation.setRepeatMode(2);
+        //repeat 1 time only
+        punchAnimation.setRepeatCount(1);
+        punchAnimation.setFillAfter(true);
+        btn_player1.startAnimation(punchAnimation);
     }
+
+    public void punchPlayer1(){
+        Float move_pos2 = left_p2 - 50;
+        Float static_pos2 = left_p2;
+        TranslateAnimation punchAnimation = new TranslateAnimation(static_pos2, move_pos2, 0, 0);
+        punchAnimation.setDuration(250);
+        punchAnimation.setRepeatMode(2);
+        punchAnimation.setRepeatCount(1);
+        punchAnimation.setFillAfter(true);
+        btn_player2.startAnimation(punchAnimation);
+    }
+
     public void again(){
         mPlayer.selectStart(getActivity());
         mPlayer.play();
@@ -201,19 +219,16 @@ public class ArenaFragment extends Fragment {
         animation1.setDuration(1000);
         animation1.setFillAfter(true);
         btn_player1.startAnimation(animation1);
-        //imgview.startAnimation(animation1);
         TranslateAnimation animation2 = new TranslateAnimation(left_p2, right_p2, 0, 0);
         animation2.setDuration(1000);
         animation2.setFillAfter(true);
         btn_player2.startAnimation(animation2);
-        //imgview2.startAnimation(animation2);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
-
 
         if (ArenaSettingsLab.get(getActivity()).getCurrentArena() != null) {
             currentPos = ArenaSettingsLab.get(getActivity()).getCurrentArena();
@@ -372,6 +387,9 @@ public class ArenaFragment extends Fragment {
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                punchPlayer2();
+
                 if(click_left+click_right>=9)
                 {
                     hp_player2-=50;
@@ -432,6 +450,9 @@ public class ArenaFragment extends Fragment {
         btn_attack_player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                punchPlayer1();
+
                 if(click_left+click_right>=9)
                 {
                     hp_player1-=50;
