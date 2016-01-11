@@ -25,6 +25,7 @@ public class GameSettingsFragment extends Fragment {
     private ArrayList<ArenaSettings> mArenas;
     private Button OKBtn;
     private Integer currentPos;
+    private AudioPlayer mPlayer = new AudioPlayer();
 
     public GameSettingsFragment() {
         // Required empty public constructor
@@ -35,6 +36,9 @@ public class GameSettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game_settings, container, false);
+
+        mPlayer.selectBgMusic(getActivity());
+        mPlayer.play();
 
         arenaViewPager = (ViewPager)view.findViewById(R.id.arenaViewPager);
         mArenas = ArenaSettingsLab.get(getActivity()).getArenas();
@@ -73,6 +77,24 @@ public class GameSettingsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        mPlayer.stop();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        mPlayer.stop();
     }
 
 }

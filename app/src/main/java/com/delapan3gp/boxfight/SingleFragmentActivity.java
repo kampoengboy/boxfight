@@ -1,6 +1,7 @@
 package com.delapan3gp.boxfight;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -29,9 +30,9 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
     @Override
     public void onBackPressed(){
         if (createFragment().getClass() == ArenaFragment.class){
-            super.onBackPressed();
             //when user press back suddenly
             ArenaFragment.timer.cancel();
+            super.onBackPressed();
         }
         else if(createFragment().getClass() == HomeFragment.class){
             FragmentManager fm = getSupportFragmentManager();

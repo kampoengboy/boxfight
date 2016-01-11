@@ -26,9 +26,9 @@ public class AudioPlayer {
         });
     }
 
-    public void selectBgSound(Context c){
+    public void selectBgMusic(Context c){
         stop();
-        mPlayer = MediaPlayer.create(c, R.raw.bgsound);
+        mPlayer = MediaPlayer.create(c, R.raw.bgmusic);
     }
 
     public void selectStart(Context c){

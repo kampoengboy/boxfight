@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mPlayer.selectBgSound(getActivity());
+        mPlayer.selectBgMusic(getActivity());
         mPlayer.play();
 
         return view;
@@ -93,5 +93,12 @@ public class HomeFragment extends Fragment {
     public void onStop(){
         super.onStop();
         mPlayer.stop();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mPlayer.selectBgMusic(getActivity());
+        mPlayer.play();
     }
 }
