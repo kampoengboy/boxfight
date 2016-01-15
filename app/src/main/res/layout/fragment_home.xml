@@ -1,36 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@drawable/bg_minion"
     tools:context="com.delapan3gp.boxfight.HomeFragment">
 
     <TextView
         android:id="@+id/txtStart"
-        android:layout_width="162dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@drawable/start"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="255dp"/>
+        android:layout_marginLeft="200dp"
+        android:layout_gravity="bottom" />
 
     <TextView
         android:id="@+id/txtSettings"
-        android:layout_width="162dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@drawable/settings"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="435dp" />
+        android:layout_alignTop="@+id/txtStart"
+        android:layout_toRightOf="@+id/txtStart"
+        android:layout_toEndOf="@+id/txtStart"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="bottom" />
 
     <TextView
         android:id="@+id/txtExit"
-        android:layout_width="162dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@drawable/exit"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="320dp"
-        android:layout_marginRight="35dp"
-        />
+        android:layout_alignBottom="@+id/txtSettings"
+        android:layout_toRightOf="@+id/txtSettings"
+        android:layout_toEndOf="@+id/txtSettings"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="61dp" />
 
-</RelativeLayout>
+</LinearLayout>
