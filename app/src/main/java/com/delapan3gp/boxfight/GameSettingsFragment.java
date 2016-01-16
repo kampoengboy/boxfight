@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,9 @@ public class GameSettingsFragment extends Fragment {
     private ViewPager arenaViewPager;
     private ArrayList<ArenaSettings> mArenas;
     private Button OKBtn;
-    private Integer currentPos;
+    private Integer currentPos, currentTimeSelected;
     private AudioPlayer mPlayer = new AudioPlayer();
+    public static RadioButton firstTimerRadioBtn, secondTimerRadioBtn, thirdTimerRadioBtn, fourthTimerRadioBtn;
 
     public GameSettingsFragment() {
         // Required empty public constructor
@@ -39,6 +41,30 @@ public class GameSettingsFragment extends Fragment {
         arenaViewPager = (ViewPager)view.findViewById(R.id.arenaViewPager);
         mArenas = ArenaSettingsLab.get(getActivity()).getArenas();
         OKBtn = (Button)view.findViewById(R.id.OKBtn);
+
+        firstTimerRadioBtn = (RadioButton)view.findViewById(R.id.firstTimerRadioBtn);
+        secondTimerRadioBtn = (RadioButton)view.findViewById(R.id.secondTimerRadioBtn);
+        thirdTimerRadioBtn = (RadioButton)view.findViewById(R.id.thirdTimerRadioBtn);
+        fourthTimerRadioBtn = (RadioButton)view.findViewById(R.id.fourthTimerRadioBtn);
+
+        if (ArenaSettingsLab.get(getActivity()).getCurrentTimerPos() != null){
+            currentTimeSelected = ArenaSettingsLab.get(getActivity()).getCurrentTimerPos();
+            if (currentTimeSelected.equals(0)){
+                firstTimerRadioBtn.setChecked(true);
+            }
+            else if (currentTimeSelected.equals(1)){
+                secondTimerRadioBtn.setChecked(true);
+            }
+            else if (currentTimeSelected.equals(2)){
+                thirdTimerRadioBtn.setChecked(true);
+            }
+            else{
+                fourthTimerRadioBtn.setChecked(true);
+            }
+        }
+        else {
+            firstTimerRadioBtn.setChecked(true);
+        }
 
         arenaViewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override

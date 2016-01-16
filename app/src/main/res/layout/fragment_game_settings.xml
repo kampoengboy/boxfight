@@ -7,8 +7,40 @@
     android:orientation="vertical"
     android:background="@drawable/bg_settings">
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstTimerRadioBtn"
+            android:buttonTint="@color/background_material_dark"
+            android:text="20s"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/secondTimerRadioBtn"
+            android:buttonTint="@color/background_material_dark"
+            android:text="40s"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thirdTimerRadioBtn"
+            android:buttonTint="@color/background_material_dark"
+            android:text="80s"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fourthTimerRadioBtn"
+            android:buttonTint="@color/background_material_dark"
+            android:text="No Timer"/>
+    </RadioGroup>
+
     <android.support.v4.view.ViewPager
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/arenaViewPager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
