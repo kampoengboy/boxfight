@@ -14,7 +14,7 @@ public class ArenaSettingsLab {
     private Context mAppContext;
     private ArrayList<ArenaSettings> mArenas;
     private ArenaSettings arena;
-    private Integer currentPos;
+    private Integer currentPos, timerSelected, currentTimerPos;
 
     private void setArenaLab(Integer ip){
         arena = new ArenaSettings();
@@ -58,6 +58,22 @@ public class ArenaSettingsLab {
 
     public Integer getCurrentArena(){
         return currentPos;
+    }
+
+    public void setTimerSelected(Integer timer){
+        timerSelected = timer;
+    }
+
+    public Integer getTimerSelected(){
+        return timerSelected;
+    }
+
+    public void setCurrentTimerPos(Integer timerPos){
+        currentTimerPos = timerPos;
+    }
+
+    public Integer getCurrentTimerPos(){
+        return currentTimerPos;
     }
 
 }

@@ -5,7 +5,7 @@
     android:gravity="center"
     android:weightSum="1"
     android:orientation="vertical"
-    android:background="@drawable/bg_settings">
+    android:background="@drawable/bg_gamesettings">
 
     <android.support.v4.view.ViewPager
         android:layout_marginTop="90dp"
@@ -15,11 +15,49 @@
         android:layout_alignBottom="@+id/gamesettings"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/OKBtn"
-        android:layout_width="162dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ok"
-        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="240dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstTimerRadioBtn"
+                android:buttonTint="@color/background_material_dark"
+                android:text="20s"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/secondTimerRadioBtn"
+                android:buttonTint="@color/background_material_dark"
+                android:text="40s"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/thirdTimerRadioBtn"
+                android:buttonTint="@color/background_material_dark"
+                android:text="80s"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fourthTimerRadioBtn"
+                android:buttonTint="@color/background_material_dark"
+                android:text="No Timer"/>
+        </RadioGroup>
+        <Button
+            android:layout_marginLeft="120dp"
+            android:id="@+id/OKBtn"
+            android:layout_width="162dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ok"
+            android:layout_marginBottom="15dp"
+            android:paddingBottom="5dp"/>
+    </LinearLayout>
 
 </LinearLayout>
