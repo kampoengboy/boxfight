@@ -437,7 +437,7 @@ public class ArenaFragment extends Fragment {
                             }
 
                             public void onFinish(){
-                                text.setText("Win");
+                                //text.setText("Win");
                                 isCanceled = true;
                             }
                         }.start();
@@ -500,7 +500,7 @@ public class ArenaFragment extends Fragment {
                             }
 
                             public void onFinish(){
-                                text.setText("Win");
+                                //text.setText("Win");
                                 isCanceled = true;
                             }
                         }.start();

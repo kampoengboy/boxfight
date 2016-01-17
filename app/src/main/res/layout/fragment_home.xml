@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/bg_minion"
-    tools:context="com.delapan3gp.boxfight.HomeFragment">
+    tools:context="com.delapan3gp.boxfight.HomeFragment"
+    android:gravity="center|bottom|right">
 
     <TextView
         android:id="@+id/txtStart"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@drawable/start"
-        android:layout_marginLeft="200dp"
         android:layout_gravity="bottom" />
 
     <TextView
@@ -36,6 +36,7 @@
         android:layout_toEndOf="@+id/txtSettings"
         android:layout_marginLeft="10dp"
         android:layout_gravity="bottom"
-        android:layout_marginTop="61dp" />
+        android:layout_marginTop="61dp"
+        android:layout_marginRight="20dp" />
 
 </LinearLayout>
