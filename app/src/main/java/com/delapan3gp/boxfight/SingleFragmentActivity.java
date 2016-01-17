@@ -39,7 +39,24 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
             DialogExitFragment dialog = new DialogExitFragment();
             dialog.show(fm, null);
         }
-        else{
+        else{ //Back From GameSettings
+            if (GameSettingsFragment.firstTimerRadioBtn.isChecked()){
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setTimerSelected(20000);
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setCurrentTimerPos(0);
+
+            }
+            else if (GameSettingsFragment.secondTimerRadioBtn.isChecked()){
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setTimerSelected(40000);
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setCurrentTimerPos(1);
+            }
+            else if (GameSettingsFragment.thirdTimerRadioBtn.isChecked()){
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setTimerSelected(80000);
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setCurrentTimerPos(2);
+            }
+            else{
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setTimerSelected(0);
+                ArenaSettingsLab.get(SingleFragmentActivity.this).setCurrentTimerPos(3);
+            }
             super.onBackPressed();
         }
     }

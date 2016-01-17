@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ArenaFragment extends Fragment {
@@ -40,7 +41,7 @@ public class ArenaFragment extends Fragment {
     public static ProgressBar pgBar;
     public static ProgressBar pgBar2;
     public static CountDownTimer timer;
-    public static long millisinfuture = 20000;
+    public static Integer millisinfuture, timerSelected;
     public static long countDownInterval = 1000;
     public static final String KEY = "reset";
     public static final String KEY2 = "left_p1";
@@ -48,6 +49,7 @@ public class ArenaFragment extends Fragment {
     public static final String KEY4 = "left_p2";
     public static final String KEY5 = "right_p2";
     public AudioPlayer mPlayer = new AudioPlayer();
+    private Boolean isTimer;
 
     public static final String SCORE1_KEY = "score1_key";
     public static final String SCORE2_KEY = "score2_key";
@@ -103,112 +105,123 @@ public class ArenaFragment extends Fragment {
         ArenaFragment.this.hp_player1 = 200;
         ArenaFragment.this.hp_player2 = 200;
         timer.cancel();
-        millisinfuture = 20000;
+        if (timerSelected == null){
+            millisinfuture = 20000;
+        }
+        else{
+            millisinfuture = timerSelected;
+        }
+        if (millisinfuture.equals(0)){
+            isTimer = false;
+        }
+        else{
+            isTimer = true;
+        }
         countDownInterval = 1000;
+
         isCanceled = false;
 
-        timer = new CountDownTimer(millisinfuture,countDownInterval) { // adjust the milli seconds here
+        if (isTimer) {
+            timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
 
-            public void onTick(long millisUntilFinished) {
-                if(isCanceled)
-                {
-                    //If user requested to pause or cancel the count down timer
-                    cancel();
+                public void onTick(long millisUntilFinished) {
+                    if (isCanceled) {
+                        //If user requested to pause or cancel the count down timer
+                        cancel();
+                    } else {
+                        text.setText("" + millisUntilFinished / 1000);
+                        //Put count down timer remaining time in a variable
+                    }
                 }
-                else {
-                    text.setText("" + millisUntilFinished / 1000);
-                    //Put count down timer remaining time in a variable
-                }
-            }
 
-            public void onFinish() {
-                mPlayer.selectEnd(getActivity());
-                mPlayer.play();
+                public void onFinish() {
+                    mPlayer.selectEnd(getActivity());
+                    mPlayer.play();
 
-                text.setText("0");
-                if(pgBar.getProgress() > pgBar2.getProgress()){
-                    score_p1+=1;
-                    ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p1));
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("Player 1 Win");
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.setCancelable(false);
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
+                    text.setText("0");
+                    if (pgBar.getProgress() > pgBar2.getProgress()) {
+                        score_p1 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p1));
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("Player 1 Win");
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.setCancelable(false);
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    } else if (pgBar.getProgress() < pgBar2.getProgress()) {
+                        score_p2 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP2)).setText(String.valueOf(score_p2));
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("Player 2 Win");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    } else if (pgBar.getProgress() == pgBar2.getProgress()) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("DRAW");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    }
                 }
-                else if(pgBar.getProgress() < pgBar2.getProgress()){
-                    score_p2+=1;
-                    ((TextView) getView().findViewById(R.id.txtScoreP2)).setText(String.valueOf(score_p2));
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("Player 2 Win");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
-                } else if(pgBar.getProgress() == pgBar2.getProgress()){
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("DRAW");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
-                }
-            }
-        }.start();
+            }.start();
+        }
         btn_left_player1.setEnabled(true);
         btn_left_player2.setEnabled(true);
         btn_right_player1.setEnabled(true);
@@ -229,6 +242,14 @@ public class ArenaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
+
+        timerSelected = ArenaSettingsLab.get(getActivity()).getTimerSelected();
+        if (timerSelected == null){
+            millisinfuture = 20000;
+        }
+        else{
+            millisinfuture = timerSelected;
+        }
 
         if (ArenaSettingsLab.get(getActivity()).getCurrentArena() != null) {
             currentPos = ArenaSettingsLab.get(getActivity()).getCurrentArena();
@@ -277,111 +298,115 @@ public class ArenaFragment extends Fragment {
         pgBar2.setRotation(180);
         pgBar2.setMax(200);
         pgBar2.setProgress(200);
-        millisinfuture = 20000;
+        if (millisinfuture.equals(0)){
+            isTimer = false;
+        }
+        else{
+            isTimer= true;
+        }
         countDownInterval = 1000;
 
-        timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
+        if (isTimer) {
+            timer = new CountDownTimer(millisinfuture, countDownInterval) { // adjust the milli seconds here
 
-            public void onTick(long millisUntilFinished) {
-                if(isCanceled)
-                {
-                    //If user requested to pause or cancel the count down timer
-                    cancel();
+                public void onTick(long millisUntilFinished) {
+                    if (isCanceled) {
+                        //If user requested to pause or cancel the count down timer
+                        cancel();
+                    } else {
+                        text.setText("" + millisUntilFinished / 1000);
+                            //Put count down timer remaining time in a variable
+                    }
                 }
-                else {
-                    text.setText("" + millisUntilFinished / 1000);
-                    //Put count down timer remaining time in a variable
-                }
-            }
 
-            public void onFinish() {
-                mPlayer.selectEnd(getActivity());
-                mPlayer.play();
+                public void onFinish() {
+                    mPlayer.selectEnd(getActivity());
+                    mPlayer.play();
 
-                text.setText("0");
-                if(pgBar.getProgress() > pgBar2.getProgress()){
-                    score_p1+=1;
-                    ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p1));
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("Player 1 Win");
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.setCancelable(false);
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
+                    text.setText("0");
+                    if (pgBar.getProgress() > pgBar2.getProgress()) {
+                        score_p1 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP1)).setText(String.valueOf(score_p1));
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("Player 1 Win");
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.setCancelable(false);
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    } else if (pgBar.getProgress() < pgBar2.getProgress()) {
+                        score_p2 += 1;
+                        ((TextView) getView().findViewById(R.id.txtScoreP2)).setText(String.valueOf(score_p2));
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("Player 2 Win");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    } else if (pgBar.getProgress() == pgBar2.getProgress()) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("DRAW");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                "AGAIN",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        again();
+                                        dialog.cancel();
+                                    }
+                                }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getActivity(), HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+                        builder1.show();
+                        btn_left_player1.setEnabled(false);
+                        btn_left_player2.setEnabled(false);
+                        btn_right_player1.setEnabled(false);
+                        btn_right_player2.setEnabled(false);
+                        btn_attack_player1.setEnabled(false);
+                        btn_attack_player2.setEnabled(false);
+                    }
                 }
-                else if(pgBar.getProgress() < pgBar2.getProgress()){
-                    score_p2+=1;
-                    ((TextView) getView().findViewById(R.id.txtScoreP2)).setText(String.valueOf(score_p2));
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("Player 2 Win");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
-                } else if(pgBar.getProgress() == pgBar2.getProgress()){
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                    builder1.setMessage("DRAW");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton(
-                            "AGAIN",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    again();
-                                    dialog.cancel();
-                                }
-                            }).setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(getActivity(), HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-                    });
-                    builder1.show();
-                    btn_left_player1.setEnabled(false);
-                    btn_left_player2.setEnabled(false);
-                    btn_right_player1.setEnabled(false);
-                    btn_right_player2.setEnabled(false);
-                    btn_attack_player1.setEnabled(false);
-                    btn_attack_player2.setEnabled(false);
-                }
-            }
-        }.start();
+            }.start();
+        }
         btn_attack_player1 = (Button)view.findViewById(R.id.btn_attack_player1);
         btn_attack_player2 = (Button)view.findViewById(R.id.btn_attack_player2);
         btn_attack_player1.setOnClickListener(new View.OnClickListener() {
